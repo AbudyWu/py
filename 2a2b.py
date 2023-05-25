@@ -1,13 +1,14 @@
 import random
+from typing import List
 
-def generate():
+def generate() -> List[int]:
     num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     random.shuffle(num)
     while num[0] == 0:
         random.shuffle(num)
     result = num[:4]
     return result
-def interactive():
+def interactive() -> List[int]:
     while 1:
         user_ans = input("key 4 number:")
         if check(user_ans) == False:
@@ -15,7 +16,7 @@ def interactive():
         else:
             final = [int(s) for s in user_ans]
             return final
-def game(x,y):
+def game(x,y) -> bool:
     a = 0
     b = 0
     for i in range(4):
@@ -30,7 +31,7 @@ def game(x,y):
         print("\033[33;45m YES ANS IS :\033[0m", *ans)
         return False
     return True
-def check(aa):
+def check(aa) -> bool:
     if len(aa) != 4:
         print("\033[31;46m pls input 4 digit \033[0m")
         return False
@@ -46,10 +47,11 @@ def check(aa):
     else:
         return True
 
-key = True
-print("2A2B start!")
-ans = generate()
-print('ans=',ans)
-while key:
-    guess = interactive()
-    key=game(ans,guess)
+if __name__ == "__main__":
+    key = True
+    print("2A2B start!")
+    ans = generate()
+    print('ans=',ans)
+    while key:
+        guess = interactive()
+        key=game(ans,guess)
